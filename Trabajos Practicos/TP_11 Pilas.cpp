@@ -15,7 +15,7 @@ struct Nodo {
 
 // PROTOTIPO DE FUNCIONES
 void menu();
-void cargarAlumno(Alumno &)
+void cargarAlumno(Alumno &);
 void agregarEnPila(Nodo *&, Alumno &);
 void eliminarEnPila(Nodo *&, Alumno);
 
@@ -53,9 +53,11 @@ void menu(){
 			case 1: 
 				cout<<"Seleccione pila 1 o 2: ";  cin>>pila_elegida;
 				if(pila_elegida==1){
-					
-					
+					cargarAlumno(alum);
+					agregarEnPila(pila_1, alum);
 				} else if(pila_elegida==2){
+					cargarAlumno(alum);
+					agregarEnPila(pila_2, alum);
 				} else {
 					cout<<"OPCION NO VALIDA";
 				}
@@ -69,3 +71,28 @@ void menu(){
 		}
 	} while (opcion !=5 )
 }
+
+void cargarAlumno(Alumno &a){
+	fflush(stdin);
+	cout<< "\tIngrese los datos del Alumno"<<endl;
+	
+	cout<< "Nombre: ";  
+	cin.getline(a.nombre, 30, '\n');
+	
+	cout<<"DNI: ";
+	cin >> a.dni;
+	
+	cout<<"Edad: ";
+	cin >> a.edad;	
+};
+
+void agregarEnPila(Nodo * &pila, Alumno &alum){
+	Nodo *nuevo_nodo = new Nodo();
+	nuevo_nodo->alum = alum;
+	nuevo_nodo->siguiente = pila;
+	
+	pila = nuevo_nodo;
+	cout << "Alumno agregado correctamente a la Pila"<<endl;
+}
+
+void eliminarEnPila
